@@ -16,11 +16,11 @@ public class DollyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.mode == GameSingleton.Mode.Corridor)
-            transform.Translate(transform.forward * forwardSpeed);
-        else
-        {
+        //if(gameManager.mode == GameSingleton.Mode.Corridor)
+        //    transform.Translate(transform.forward * forwardSpeed);
+        //else
+        //{
 
-        }
+        //}
     }
 }
