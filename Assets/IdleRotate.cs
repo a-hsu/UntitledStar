@@ -14,8 +14,12 @@ public class IdleRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float t = Mathf.PingPong(Time.time * speed, 1.0f);
-        transform.eulerAngles += Vector3.Lerp(new Vector3(0,0,-.1f), new Vector3(0, 0, .1f), t);
+        if (!GameSingleton.instance.isPaused)
+        {
+            transform.eulerAngles += Vector3.Lerp(new Vector3(0, 0, -.1f), new Vector3(0, 0, .1f), t);
+        }
 
 
     }

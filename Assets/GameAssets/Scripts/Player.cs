@@ -15,8 +15,10 @@ public class Player : MonoBehaviour
     public float lookSpeed = 340f;
 
     public Vector3 rayDir;
-
+    public Transform plane;
     public Vector3 targetVector;
+
+    public GameObject dolly;
 
 
     // Start is called before the first frame update
@@ -146,12 +148,19 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(transform.position.x + xSpeed * Time.deltaTime, transform.position.y + ySpeed * Time.deltaTime, transform.position.z);
 
 
-
-
+        Turn();
+   
         // Camera
         ClampPosition();
     }
-    void MoveAllRange()
+    void Turn()
+    {
+        float yaw = 30f * Time.deltaTime * Input.GetAxis("Horizontal");
+        float pitch = 30f * Time.deltaTime * Input.GetAxis("Horizontal");
+
+        transform.Rotate(0, yaw, 0f);
+    }
+        void MoveAllRange()
     {
 
         if (input.y < 0 && ySpeed < maxSpeed)
@@ -234,8 +243,11 @@ public class Player : MonoBehaviour
     void ClampPosition()
     {
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        pos.x = Mathf.Clamp01(pos.x);
+        pos.x = .5f;
         pos.y = Mathf.Clamp01(pos.y);
+        pos.z = 20f;
+
+
         transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 
@@ -245,14 +257,20 @@ public class Player : MonoBehaviour
         target.localEulerAngles = new Vector3(targetEulerAngles.x, targetEulerAngles.y, Mathf.LerpAngle(targetEulerAngles.z, -axis * leanLimit, lerpTime));
     }
 
-
+    public float rotationSmoothing = 7f;
     void Rotate(float x, float y, float speed)
     {
         targetFar.transform.parent.position = Vector3.zero;
         targetFar.transform.localPosition = new Vector3(x / 2, y / 1.3f, 1);
 
+        Vector3 front = new Vector3(dolly.transform.forward.x, dolly.transform.forward.y, dolly.transform.forward.z);
+
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(30f * input.y, 30f * input.x, transform.rotation.eulerAngles.z), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetFar.transform.localPosition), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
+        if(input.x <= .05f && input.x >= -.05f && input.y <= .05f && input.y >= -.05f)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
+        } else 
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(new Vector3(targetFar.transform.localPosition.x,targetFar.transform.localPosition.y,0) +front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
 
         //            Quaternion.(transform.rotation, Quaternion.LookRotation(targetFar.transform.localPosition), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
     }

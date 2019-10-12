@@ -18,7 +18,7 @@ public class GameSingleton : MonoBehaviour
     public static GameSingleton instance;
     public bool isPersistant;
 
-    
+    public bool isPaused = false;
 
     public virtual void Awake()
     {
@@ -40,7 +40,14 @@ public class GameSingleton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Pause"))
+        {
+            isPaused = !isPaused;
+            if (isPaused)
+                Time.timeScale = 0;
+            else
+                Time.timeScale = 1;
+        }
     }
     void ExitGame()
     {
