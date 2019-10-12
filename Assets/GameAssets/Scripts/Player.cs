@@ -88,11 +88,11 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-       // if(gameManager.mode == GameSingleton.Mode.AllRange)
-       // {
-            //MoveAllRange();
-       // } else 
-            Move();
+        // if(gameManager.mode == GameSingleton.Mode.AllRange)
+        // {
+        //MoveAllRange();
+        // } else 
+        Move();
 
         // Rotate
         Rotate(input.x, input.y, xySpeed);
@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
 
 
         Turn();
-   
+
         // Camera
         ClampPosition();
     }
@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
 
         transform.Rotate(0, yaw, 0f);
     }
-        void MoveAllRange()
+    void MoveAllRange()
     {
 
         if (input.y < 0 && ySpeed < maxSpeed)
@@ -266,11 +266,12 @@ public class Player : MonoBehaviour
         Vector3 front = new Vector3(dolly.transform.forward.x, dolly.transform.forward.y, dolly.transform.forward.z);
 
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(30f * input.y, 30f * input.x, transform.rotation.eulerAngles.z), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
-        if(input.x <= .05f && input.x >= -.05f && input.y <= .05f && input.y >= -.05f)
+        if (input.x <= .05f && input.x >= -.05f && input.y <= .05f && input.y >= -.05f)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
-        } else 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(new Vector3(targetFar.transform.localPosition.x,targetFar.transform.localPosition.y,0) +front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
+        }
+        else
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(new Vector3(targetFar.transform.localPosition.x, targetFar.transform.localPosition.y, 0) + front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
 
         //            Quaternion.(transform.rotation, Quaternion.LookRotation(targetFar.transform.localPosition), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
     }

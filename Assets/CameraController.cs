@@ -11,8 +11,8 @@ public class CameraController : MonoBehaviour
     public PlayerInput input;
     public float xdistance = 10f;
     public float ydistance = 5f;
-    float x,y,z = 0f;
-    
+    float x, y, z = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
         float xRatio = x * xdistance;
         float yRatio = y * ydistance;
 
-        cam.transform.position = new Vector3(xRatio * xdistance, yRatio * ydistance, 0f);
+        //cam.transform.position = new Vector3(player.transform.position.x * xRatio, player.transform.position.y * yRatio, -15f);
 
         //Move();
         //transform.position = Vector3.Lerp(transform.position, new Vector3 (x*xdistance,y* ydistance, transform.position.z), Time.deltaTime * dampening);
@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
 
     void FixedUpdate()
     {
-       
+
     }
     void Move()
     {

@@ -23,40 +23,22 @@ public class DollyController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
         //if(gameManager.mode == GameSingleton.Mode.Corridor)
         //    transform.Translate(transform.forward * forwardSpeed);
         //else
         //{
 
-        //}
-<<<<<<< Updated upstream
-=======
-=======
-        target.rotation = myT.rotation;
+        //
+        //target.rotation = myT.rotation;
         Thrust();
         Turn();
     }
+    
     void Turn()
     {
         float yaw = turnSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
         float pitch = turnSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
-
-=======
-        target.rotation = myT.rotation;
-        Thrust();
-        Turn();
-    }
-    void Turn()
-    {
-        float yaw = turnSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
-        float pitch = turnSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
-
->>>>>>> Stashed changes
+        
         myT.Rotate(0, yaw, 0f);
     }
     void Thrust()
@@ -65,10 +47,6 @@ public class DollyController : MonoBehaviour
             myT.position += myT.forward * movementSpeed * Time.deltaTime * Mathf.Abs(Input.GetAxis("Horizontal"));
         else
             myT.position += myT.forward * Time.deltaTime * forwardSpeed;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     }
 }
