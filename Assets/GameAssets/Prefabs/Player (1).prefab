@@ -5278,9 +5278,9 @@ MonoBehaviour:
   xSpeed: 0
   ySpeed: 0
   maxSpeed: 10
-  xAccel: 35
+  xAccel: 25
   xDecel: 35
-  yAccel: 35
+  yAccel: 25
   yDecel: 35
 --- !u!114 &8285037710228484
 MonoBehaviour:

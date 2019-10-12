@@ -10,9 +10,8 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         void OnEnable()
         {
-
+            print("Hello");
         }
-
         public void SetDownState()
         {
             CrossPlatformInputManager.SetButtonDown(Name);

@@ -6,6 +6,7 @@ public class DollyController : MonoBehaviour
 {
     public float forwardSpeed = 10f;
     public GameObject player;
+    GameSingleton gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,11 @@ public class DollyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(transform.forward * forwardSpeed);
+        if(gameManager.mode == GameSingleton.Mode.Corridor)
+            transform.Translate(transform.forward * forwardSpeed);
+        else
+        {
+
+        }
     }
 }

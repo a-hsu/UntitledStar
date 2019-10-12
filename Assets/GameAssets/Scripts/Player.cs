@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     PlayerInput input;
     public GameObject targetFar;
     Animator anim;
-
+    GameSingleton gameManager;
     public float xySpeed = 18;
     public float lookSpeed = 340f;
 
@@ -84,7 +84,20 @@ public class Player : MonoBehaviour
         status.laserType = PlayerStatus.Laser.Single;
 
     }
+    private void FixedUpdate()
+    {
+       // if(gameManager.mode == GameSingleton.Mode.AllRange)
+       // {
+            //MoveAllRange();
+       // } else 
+            Move();
 
+        // Rotate
+        Rotate(input.x, input.y, xySpeed);
+        //ship.transform.rotation = Quaternion.Lerp(ship.transform.rotation, Quaternion.Euler(60f * input.x, 60f * input.y, ship.transform.rotation.z), Time.deltaTime);
+
+        HorizontalLean(transform, input.x, 45, .1f);
+    }
     private void Move()
     {
         /*
@@ -138,6 +151,30 @@ public class Player : MonoBehaviour
         // Camera
         ClampPosition();
     }
+    void MoveAllRange()
+    {
+
+        if (input.y < 0 && ySpeed < maxSpeed)
+        {
+            ySpeed = ySpeed - yAccel * Time.deltaTime;
+        }
+        else if (input.y > 0 && ySpeed > -maxSpeed)
+        {
+            ySpeed = ySpeed + yAccel * Time.deltaTime;
+        }
+        else
+        {
+            if (ySpeed > (yDecel * Time.deltaTime))
+                ySpeed = ySpeed - yDecel * Time.deltaTime;
+            else if (ySpeed < -yDecel * Time.deltaTime)
+                ySpeed = ySpeed + yDecel * Time.deltaTime;
+            else
+                ySpeed = 0;
+        }
+        ySpeed = Mathf.Clamp(ySpeed, -10, 10);
+        transform.position = new Vector3(transform.position.x + xSpeed * Time.deltaTime, transform.position.y + ySpeed * Time.deltaTime, transform.position.z);
+
+    }
     void Update()
     {
         Cursor.visible = false;
@@ -152,13 +189,6 @@ public class Player : MonoBehaviour
 
         // Translate
         rayDir = transform.forward;
-        Move();
-
-        // Rotate
-        Rotate(input.x, input.y, xySpeed);
-        //ship.transform.rotation = Quaternion.Lerp(ship.transform.rotation, Quaternion.Euler(60f * input.x, 60f * input.y, ship.transform.rotation.z), Time.deltaTime);
-
-        HorizontalLean(transform, input.x, 45, .1f);
         // Check if Rolling
 
         // Check if shooting

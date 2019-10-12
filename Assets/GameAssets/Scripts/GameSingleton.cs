@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class GameSingleton : MonoBehaviour
 {
+
     /*
      * This script controls the state of the game as well as audio
      */
      
-    enum Mode { Corridor, AllRange }  // 0 - Corridor Mode, 1 - All Range Mode
-    enum View { ThirdPerson, Cockpit }
+    public enum Mode { Corridor, AllRange }  // 0 - Corridor Mode, 1 - All Range Mode
+    public enum View { ThirdPerson, Cockpit }
+    public Mode mode;
+    public View view;
     public int level;
     public static AudioSource bgm;
     public static GameSingleton instance;
+    public bool isPersistant;
 
-    private void Awake()
+    
+
+    public virtual void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
-        } else if(instance != this)
-        {
-            Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
+        else
+            Destroy(this); // or gameObject
     }
 
     // Start is called before the first frame update
