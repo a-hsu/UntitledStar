@@ -1,0 +1,330 @@
+newmtl mat1
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaWall4a.PNG
+
+newmtl mat2
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaWall5b.PNG
+
+newmtl mat3
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaMaingun2.PNG
+
+newmtl mat4
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd starfox_105_FoxMark.PNG
+
+newmtl mat5
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd starfox_105_FoxMark_re.PNG
+
+newmtl mat6
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaMaingun3.PNG
+
+newmtl mat7
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaMaingun4.PNG
+
+newmtl mat8
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaMaingun1.PNG
+
+newmtl mat9
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaNozzle4.PNG
+
+newmtl mat10
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaNozzle1.PNG
+
+newmtl mat11
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaWall4d.PNG
+
+newmtl mat12
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaWall4d.PNG
+
+newmtl mat13
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaWall10.PNG
+
+newmtl mat14
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaMainplanes2c.PNG
+
+newmtl mat15
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaFlareblue.PNG
+
+newmtl mat16
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaFlarered.PNG
+
+newmtl mat17
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaBarner1.PNG
+
+newmtl mat18
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaMainplanes1.PNG
+
+newmtl mat19
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaMainplanes1b.PNG
+
+newmtl mat20
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaMaingun5.PNG
+
+newmtl mat21
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaGWin1.PNG
+
+newmtl mat22
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaWall8b.PNG
+
+newmtl mat23
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaWall9b.PNG
+
+newmtl mat24
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaLaunchsite5b.PNG
+
+newmtl mat25
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaNozzle3.PNG
+
+newmtl mat26
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaLaunchsite1.PNG
+
+newmtl mat27
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaLaunchsite4b.PNG
+
+newmtl mat28
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaWall13.PNG
+
+newmtl mat29
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaNozzle3.PNG
+
+newmtl mat30
+	Ns 10
+	Ni 1.0
+	d 1.0
+	Tf 1 1 1
+	illum 2
+	Ka 0.5 0.5 0.5
+	Kd 0.9 0.9 0.9
+	Ks 0.0 0.0 0.0
+	map_Kd GrdCorneriaNozzle5.PNG
+
