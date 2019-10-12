@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
      */
 
     // Test Section
-    
+
     public float xSpeed = 0; // Don't touch this
     public float ySpeed = 0; // Don't touch this
     public float maxSpeed = 10f;
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
     public float xDecel = 10f;
     public float yAccel = 10f;
     public float yDecel = 10f;
-    
+
 
 
     private void Awake()
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         Vector3 targetVec = targetVector + transform.position;
         transform.localPosition += targetVector * xySpeed * Time.deltaTime;
         */
-        
+
         if (input.x < 0 && xSpeed < maxSpeed)
         {
             xSpeed = xSpeed - xAccel * Time.deltaTime;
@@ -128,11 +128,11 @@ public class Player : MonoBehaviour
             else
                 ySpeed = 0;
         }
-        xSpeed = Mathf.Clamp(xSpeed, -15, 15);
-        ySpeed = Mathf.Clamp(ySpeed, -15, 15);
-        transform.position = new Vector3(transform.position.x + xSpeed * Time.deltaTime, transform.position.y+ySpeed * Time.deltaTime, transform.position.z);
-        
-        
+        xSpeed = Mathf.Clamp(xSpeed, -10, 10);
+        ySpeed = Mathf.Clamp(ySpeed, -10, 10);
+        transform.position = new Vector3(transform.position.x + xSpeed * Time.deltaTime, transform.position.y + ySpeed * Time.deltaTime, transform.position.z);
+
+
 
 
         // Camera
@@ -180,7 +180,7 @@ public class Player : MonoBehaviour
          * 
          */
 
-        
+
     }
     /*
     void Roll()
@@ -219,7 +219,7 @@ public class Player : MonoBehaviour
     void Rotate(float x, float y, float speed)
     {
         targetFar.transform.parent.position = Vector3.zero;
-        targetFar.transform.localPosition = new Vector3(x/2, y/1.3f, 1);
+        targetFar.transform.localPosition = new Vector3(x / 2, y / 1.3f, 1);
 
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(30f * input.y, 30f * input.x, transform.rotation.eulerAngles.z), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetFar.transform.localPosition), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
