@@ -24,6 +24,7 @@ public class DollyController : MonoBehaviour
     private void FixedUpdate()
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 <<<<<<< Updated upstream
 >>>>>>> Stashed changes
@@ -45,6 +46,17 @@ public class DollyController : MonoBehaviour
         float yaw = turnSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
         float pitch = turnSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
 
+=======
+        target.rotation = myT.rotation;
+        Thrust();
+        Turn();
+    }
+    void Turn()
+    {
+        float yaw = turnSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
+        float pitch = turnSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
+
+>>>>>>> Stashed changes
         myT.Rotate(0, yaw, 0f);
     }
     void Thrust()
@@ -53,7 +65,10 @@ public class DollyController : MonoBehaviour
             myT.position += myT.forward * movementSpeed * Time.deltaTime * Mathf.Abs(Input.GetAxis("Horizontal"));
         else
             myT.position += myT.forward * Time.deltaTime * forwardSpeed;
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 }
