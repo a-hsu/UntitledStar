@@ -13,6 +13,7 @@ public class ProjectileMove : MonoBehaviour
     Transform oldPos;
     Vector3 dir;
     Rigidbody rb;
+   // Vector3 targetVector;
     public float force = 100f;
     // Start is called before the first frame update
     private void Awake()
@@ -48,19 +49,18 @@ public class ProjectileMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Water" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Surface" || collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Water" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Surface")
         {
             speed = 0;
             if (collision.gameObject.tag == "Enemy")
             {
                 collision.gameObject.GetComponent<Enemy>().TakeDamage(100);
-            } else if(collision.gameObject.tag == "Player")
+                
+            }  else 
             {
-                collision.gameObject.GetComponent<Player>().TakeDamage(10);
-            } else 
-            {
-                Destroy(gameObject);
+
             }
+            Destroy(gameObject);
         }
     }
 }

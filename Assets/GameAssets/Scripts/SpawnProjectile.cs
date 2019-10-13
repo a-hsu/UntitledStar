@@ -14,6 +14,8 @@ public class SpawnProjectile : MonoBehaviour
     PlayerInput input;
     PlayerStatus status;
 
+    public GameObject target;
+
     public float timeToFire = 0;
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,8 @@ public class SpawnProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Vector3 targetVec = target.transform.position - transform.position;
+        
         if (Input.GetButton("Fire1") && Time.time >= timeToFire)
         {
 
