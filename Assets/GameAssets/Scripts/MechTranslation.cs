@@ -45,7 +45,6 @@ public class MechTranslation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.transform.name);
         if (other.transform.name == "ArenaBounds")
         {
             hitAreaBounds = true;
