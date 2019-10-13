@@ -271,7 +271,8 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
         }
         else
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(new Vector3(targetFar.transform.localPosition.x, targetFar.transform.localPosition.y, 0) + front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
+            
+            transform.rotation = Quaternion.RotateTowards(transform.rotation,  Quaternion.LookRotation(new Vector3(front.x, targetFar.transform.localPosition.y, 0) + front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
 
         //            Quaternion.(transform.rotation, Quaternion.LookRotation(targetFar.transform.localPosition), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
     }

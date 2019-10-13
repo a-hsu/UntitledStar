@@ -15,6 +15,7 @@ public class SpawnProjectile : MonoBehaviour
      // Start is called before the first frame update
     void Start()
     {
+        
         effectToSpawn = vfx[0];
         input = GetComponent<PlayerInput>();
         status = new PlayerStatus();
@@ -23,11 +24,7 @@ public class SpawnProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
-        {
-
-            Debug.Log(Input.anyKeyDown);
-        }
+        
         if (Input.GetButton("Fire1") && Time.time >= timeToFire)
         {
             
@@ -44,7 +41,6 @@ public class SpawnProjectile : MonoBehaviour
             }        
         }
     }
-
     void SpawnVFX()
     {
         GameObject vfx;
@@ -52,6 +48,7 @@ public class SpawnProjectile : MonoBehaviour
         {
             print("Shotfired");
             vfx = Instantiate(effectToSpawn, firePoint.transform.position, this.transform.GetChild(0).rotation);
+            
         }
         else
         {
