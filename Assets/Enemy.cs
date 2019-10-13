@@ -56,6 +56,21 @@ public class Enemy : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             Instantiate(explosion, transform.position, transform.rotation);
+
+            StartCoroutine(BreakChains());
+        }
+    }
+    private IEnumerator BreakChains()
+    {
+        while (true)
+        {
+            foreach(int c in transform)
+            {
+
+                //transform.GetChild(c).gameObject.GetComponent<Rigidbody>().AddExplosionForce(Random.Range(-1,1), transform.position, Random.Range(0, 3));
+            }
+            yield return new WaitForSeconds(10f);
+            
             Destroy(gameObject);
 
         }

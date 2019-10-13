@@ -93,8 +93,8 @@ public class GameSingleton : MonoBehaviour
                 if(gameTimer > 20f || boss.health < (boss.maxHealth * .8f) || Input.GetKeyDown(KeyCode.U))
                 {
                     Debug.Log(Input.GetKeyDown(KeyCode.U));
-                    leftChainHitBox.GetComponent<Enemy>().Init(2500, Enemy.Type.Enemy);
-                    rightChainHitBox.GetComponent<Enemy>().Init(2500, Enemy.Type.Enemy);
+                    //leftChainHitBox.GetComponent<Enemy>().Init(2500, Enemy.Type.Enemy);
+                    //rightChainHitBox.GetComponent<Enemy>().Init(2500, Enemy.Type.Enemy);
                 }
                 break;
             case GameState.Death:

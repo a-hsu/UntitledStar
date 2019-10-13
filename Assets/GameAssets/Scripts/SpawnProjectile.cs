@@ -13,8 +13,7 @@ public class SpawnProjectile : MonoBehaviour
     private GameObject effectToSpawn;
     PlayerInput input;
     PlayerStatus status;
-
-    public GameObject target;
+    float timer = 0;
 
     public float timeToFire = 0;
     // Start is called before the first frame update
@@ -27,11 +26,27 @@ public class SpawnProjectile : MonoBehaviour
         status.laserType = PlayerStatus.Laser.Double;
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator ShootMissile()
     {
-        //Vector3 targetVec = target.transform.position - transform.position;
-        
+        yield return new WaitForSeconds(.5f);
+        SpawnVFX(2);
+    }
+        // Update is called once per frame
+        void Update()
+    {
+        if(gameObject.name == "Mech")
+        {
+            timer += Time.deltaTime;
+            if(timer > 5f)
+            {
+                StartCoroutine(ShootMissile());
+                StartCoroutine(ShootMissile());
+                StartCoroutine(ShootMissile());
+                timer = 0;
+            }
+        }
+
+
         if (Input.GetButton("Fire1") && Time.time >= timeToFire)
         {
 
@@ -68,6 +83,10 @@ public class SpawnProjectile : MonoBehaviour
             {
                 Debug.Log("No Fire Point");
             }
+        }
+        if (type == 2)
+        {
+            vfx = Instantiate(effectToSpawn, firePointTwo.transform.position, firePointTwo.transform.rotation);
         }
     }
 }

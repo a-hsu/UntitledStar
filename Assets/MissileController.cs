@@ -19,6 +19,10 @@ public class MissileController : MonoBehaviour
 
     void Start()
     {
+        if (target == null)
+        {
+            target = FindObjectOfType<Player>().gameObject.transform;
+        }
         go = FindObjectOfType<LaserSpawn>();
         rb = GetComponent<Rigidbody>();
         transform.parent = null;
