@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameSingleton : MonoBehaviour
 {
@@ -25,6 +28,12 @@ public class GameSingleton : MonoBehaviour
     public Player player;
     public PlayerStatus playerStatus;
 
+    public float gameTimer;
+    public Enemy boss;
+    public GameObject leftChainHitBox;
+    public GameObject rightChainHitBox;
+    public GameObject axeHitBox;
+
     public void Init()
     {
 
@@ -45,12 +54,26 @@ public class GameSingleton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameTimer = 0;
+        leftChainHitBox.SetActive(false);
+        rightChainHitBox.SetActive(false);
+        axeHitBox.SetActive(false);
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Intro" || scene.name == "Outro")
+        {
+            state = GameState.CutScene;
+        } else if(playerStatus.health <= 0)
+        {
+            state = GameState.Death;
+        } else
+        {
+            state = GameState.InGame;
+        }
     }
-
     // Update is called once per frame
     void Update()
     {
+        gameTimer += Time.deltaTime;
         if (Input.GetButtonDown("Pause"))
         {
             isPaused = !isPaused;
@@ -65,8 +88,14 @@ public class GameSingleton : MonoBehaviour
             case GameState.CutScene:
                 break;
             case GameState.InGame:
+                if(gameTimer > 20f || boss.health < (boss.maxHealth * .8f))
+                {
+                    leftChainHitBox.GetComponent<Enemy>().Init(2500, Enemy.Type.Enemy);
+                    rightChainHitBox.GetComponent<Enemy>().Init(2500, Enemy.Type.Enemy);
+                }
                 break;
             case GameState.Death:
+
                 break;
             case GameState.Victory:
                 break;

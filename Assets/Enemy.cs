@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float health;
+    public float maxHealth;
+    public enum Type { Enemy, Boss}
+    public Type type;
 
     // Start is called before the first frame update
     void Start()
@@ -12,6 +15,12 @@ public class Enemy : MonoBehaviour
         
     }
 
+    public void Init(float maxHealth, Type enemyType)
+    {
+        gameObject.SetActive(true);
+        health = maxHealth;
+        type = enemyType;
+    }
     // Update is called once per frame
     void Update()
     {
