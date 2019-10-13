@@ -262,21 +262,22 @@ public class Player : MonoBehaviour
     }
 
     public float rotationSmoothing = 7f;
+
     void Rotate(float x, float y, float speed)
     {
         targetFar.transform.parent.position = Vector3.zero;
         targetFar.transform.localPosition = new Vector3(x / 2, y / 1.3f, 1);
 
-        Vector3 front = new Vector3(dolly.transform.forward.x, dolly.transform.forward.y, dolly.transform.forward.z);
+        Vector3 front = new Vector3(dolly.transform.forward.x, targetFar.transform.localPosition.y, dolly.transform.forward.z);
 
+        Debug.Log(Quaternion.LookRotation(front));
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(30f * input.y, 30f * input.x, transform.rotation.eulerAngles.z), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
         if (input.x <= .05f && input.x >= -.05f && input.y <= .05f && input.y >= -.05f)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
         }
         else
-            
-            transform.rotation = Quaternion.RotateTowards(transform.rotation,  Quaternion.LookRotation(new Vector3(front.x, targetFar.transform.localPosition.y, 0) + front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation,  Quaternion.LookRotation(front /*new Vector3(targetFar.transform.localPosition.x, targetFar.transform.localPosition.y, 1) + front*/), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
 
         //            Quaternion.(transform.rotation, Quaternion.LookRotation(targetFar.transform.localPosition), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
     }
