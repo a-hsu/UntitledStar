@@ -6,7 +6,10 @@ public class AxeDestruction : MonoBehaviour
 {
     public bool bothChainsBroken = false;
     public List<Rigidbody> ground_debris;
-    public Vector3 axePosition = new Vector3(0f, 227f, 176.6f);
+    public List<Enemy> Chains;
+    public Transform AxeCutscene;
+    public Transform playerCamera;
+    private int counter = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,25 +19,51 @@ public class AxeDestruction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bothChainsBroken = true)
-            StartCoroutine(DestroyArena());
+        //Start cutscene when chains have no health
+        if (Chains[0].health <= 0 && Chains[1].health <= 0 && counter < 1)
+        {
+            counter += 1;
+            breakChains();
+            StartCoroutine(SetNotKinematic());
+            AxeCutscene.gameObject.SetActive(true);
+            playerCamera.gameObject.SetActive(false);
+            StartCoroutine(EndCutScene());
+        }
+
     }
 
-    public IEnumerator DestroyArena()
+    public IEnumerator EndCutScene()
     {
-        while (Vector3.Distance(transform.position, axePosition) > 5)
+        yield return new WaitForSecondsRealtime(16f);
+        AxeCutscene.gameObject.SetActive(false);
+        playerCamera.gameObject.SetActive(true);
+        GetComponent<Rigidbody>().isKinematic = true;
+    }
+
+    public void breakChains()
+    {
+        foreach(Enemy chain in Chains)
         {
-            Vector3 slerp = Vector3.Lerp(transform.position, axePosition, Time.deltaTime);
-            GetComponent<Rigidbody>().MovePosition(slerp);
-            transform.rotation *= Quaternion.Euler(0f, 1f, 0f);
-            yield return null;
+            foreach(Transform child in chain.transform)
+            {
+                child.GetComponent<Rigidbody>().isKinematic = false;
+            }
         }
     }
+
+    public IEnumerator SetNotKinematic()
+    {
+        Debug.Log("Gothere");
+        yield return new WaitForSecondsRealtime(5f);
+        GetComponent<Rigidbody>().isKinematic = false;
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 15)
         {
+            Debug.Log(collision.gameObject.name);
             foreach(Rigidbody rb in ground_debris)
             {
                 rb.isKinematic = false;
