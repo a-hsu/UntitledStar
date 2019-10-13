@@ -26,13 +26,13 @@ public class GameSingleton : MonoBehaviour
     public bool isPersistant;
     public bool isPaused = false;
     public Player player;
-    public PlayerStatus playerStatus;
+    PlayerStatus playerStatus;
 
     public float gameTimer;
     public Enemy boss;
     public GameObject leftChainHitBox;
     public GameObject rightChainHitBox;
-    public GameObject axeHitBox;
+    //public GameObject axeHitBox;
 
     public void Init()
     {
@@ -55,17 +55,19 @@ public class GameSingleton : MonoBehaviour
     void Start()
     {
         gameTimer = 0;
-        leftChainHitBox.SetActive(false);
-        rightChainHitBox.SetActive(false);
-        axeHitBox.SetActive(false);
+        leftChainHitBox.GetComponent<MeshCollider>().enabled = false;
+        rightChainHitBox.GetComponent<MeshCollider>().enabled = false;
+        
+       // axeHitBox.SetActive(false);
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name == "Intro" || scene.name == "Outro")
         {
             state = GameState.CutScene;
-        } else if(playerStatus.health <= 0)
-        {
-            state = GameState.Death;
-        } else
+        } //else if(playerStatus.health <= 0)
+          //{
+          //     state = GameState.Death;
+          // } 
+        else
         {
             state = GameState.InGame;
         }
@@ -88,8 +90,9 @@ public class GameSingleton : MonoBehaviour
             case GameState.CutScene:
                 break;
             case GameState.InGame:
-                if(gameTimer > 20f || boss.health < (boss.maxHealth * .8f))
+                if(gameTimer > 20f || boss.health < (boss.maxHealth * .8f) || Input.GetKeyDown(KeyCode.U))
                 {
+                    Debug.Log(Input.GetKeyDown(KeyCode.U));
                     leftChainHitBox.GetComponent<Enemy>().Init(2500, Enemy.Type.Enemy);
                     rightChainHitBox.GetComponent<Enemy>().Init(2500, Enemy.Type.Enemy);
                 }

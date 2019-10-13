@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     public void Init(float maxHealth, Type enemyType)
     {
         gameObject.SetActive(true);
+
+        gameObject.GetComponent<MeshCollider>().enabled = true;
         health = maxHealth;
         type = enemyType;
     }

@@ -56,12 +56,11 @@ public class ProjectileMove : MonoBehaviour
                 collision.gameObject.GetComponent<Enemy>().TakeDamage(100);
             } else if(collision.gameObject.tag == "Player")
             {
-                collision.gameObject.GetComponent<Enemy>().TakeDamage(10);
+                collision.gameObject.GetComponent<Player>().TakeDamage(10);
             } else 
             {
                 Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
     }
 }
