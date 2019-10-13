@@ -14,11 +14,18 @@ public class GameSingleton : MonoBehaviour
     public Mode mode;
     public View view;
     public int level;
+    public Vector3[] startPosition;
     public static AudioSource bgm;
     public static GameSingleton instance;
     public bool isPersistant;
-
     public bool isPaused = false;
+    public GameObject player;
+
+    public void Init()
+    {
+
+        Instantiate(player, startPosition[level], Quaternion.Euler(0, 0, 0));
+    }
 
     public virtual void Awake()
     {

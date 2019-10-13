@@ -27,7 +27,7 @@ public class PlayerStatus
         laserType = Laser.Single;
     }
 
-    public bool isAlive()
+    public bool IsAlive()
     {
         return health > 0;
     }

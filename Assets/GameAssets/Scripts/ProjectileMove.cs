@@ -9,10 +9,11 @@ public class ProjectileMove : MonoBehaviour
     public float lifeTime = 2f;
     Transform parent;
     Transform newPos;
-    Player go;
+    LaserSpawn go;
     Transform oldPos;
     Vector3 dir;
-
+    Rigidbody rb;
+    public float force = 100f;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -20,15 +21,17 @@ public class ProjectileMove : MonoBehaviour
     }
     void Start()
     {
-        go = FindObjectOfType<Player>();
-        
-        dir = go.rayDir;
+        go = FindObjectOfType<LaserSpawn>();
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.forward * force;
+
+
 
     }
-
     // Update is called once per frame
     void Update()
     {
+
         lifeTime -= Time.deltaTime;
         if(lifeTime <= 0)
         {
@@ -36,7 +39,8 @@ public class ProjectileMove : MonoBehaviour
         }
         if(speed != 0)
         {
-            transform.position +=  dir * speed * Time.deltaTime;
+           // rb.AddForce(transform.forward * force);
+            //transform.position +=  dir * speed * Time.deltaTime;
         } else
         {
             Debug.Log("No Speed");
@@ -44,9 +48,19 @@ public class ProjectileMove : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Water" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Surface")
+        if (collision.gameObject.tag == "Water" || collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Surface" || collision.gameObject.tag == "Player")
         {
             speed = 0;
+            if (collision.gameObject.tag == "Enemy")
+            {
+                collision.gameObject.GetComponent<Enemy>().TakeDamage(100);
+            } else if(collision.gameObject.tag == "Player")
+            {
+                collision.gameObject.GetComponent<Enemy>().TakeDamage(10);
+            } else
+            {
+
+            }
             Destroy(gameObject);
         }
     }

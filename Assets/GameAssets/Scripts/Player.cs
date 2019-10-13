@@ -13,9 +13,8 @@ public class Player : MonoBehaviour
     GameSingleton gameManager;
     public float xySpeed = 18;
     public float lookSpeed = 340f;
-
+    public bool canMove;
     public Vector3 rayDir;
-    public Transform plane;
     public Vector3 targetVector;
 
     public GameObject dolly;
@@ -79,6 +78,7 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
+        canMove = true;
         input = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
 
@@ -92,13 +92,16 @@ public class Player : MonoBehaviour
         // {
         //MoveAllRange();
         // } else 
-        Move();
+        if (canMove)
+        {
+            Move();
 
-        // Rotate
-        Rotate(input.x, input.y, xySpeed);
-        //ship.transform.rotation = Quaternion.Lerp(ship.transform.rotation, Quaternion.Euler(60f * input.x, 60f * input.y, ship.transform.rotation.z), Time.deltaTime);
+            // Rotate
+            Rotate(input.x, input.y, xySpeed);
+            //ship.transform.rotation = Quaternion.Lerp(ship.transform.rotation, Quaternion.Euler(60f * input.x, 60f * input.y, ship.transform.rotation.z), Time.deltaTime);
 
-        HorizontalLean(transform, input.x, 45, .1f);
+            HorizontalLean(transform, input.x, 45, .1f);
+        }
     }
     private void Move()
     {
@@ -243,11 +246,12 @@ public class Player : MonoBehaviour
     void ClampPosition()
     {
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        
         pos.x = .5f;
         pos.y = Mathf.Clamp01(pos.y);
         pos.z = 20f;
-
-
+        
+        
         transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 
@@ -276,13 +280,35 @@ public class Player : MonoBehaviour
 
         //            Quaternion.(transform.rotation, Quaternion.LookRotation(targetFar.transform.localPosition), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
     }
+    public void TakeDamage(float dmg)
+    {
+        status.health -= dmg;
+        Debug.Log("Hit");
+    }
+    public GameObject explosion;
+    private IEnumerator Explode()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            Instantiate(explosion, transform.position, transform.rotation);
+            Destroy(gameObject);
 
-
+        }
+    }
+    void Die()
+    {
+        canMove = false;
+        // Get shit on
+        StartCoroutine(Explode());
+        Debug.Log("Dead");
+    }
     void CheckStatus()
     {
         if (status.health <= 0)
         {
             Debug.Log("Player is dead");
+            Die();
             status.lives--;
             if (status.lives == 0)
             {
