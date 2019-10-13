@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class AudioManager : MonoBehaviour
 {
     public GameSingleton gameManager;
@@ -18,6 +19,19 @@ public class AudioManager : MonoBehaviour
 
     // Singleton instance.
     //  public static AudioManager Instance = null;
+
+    public static AudioManager instance;
+    public virtual void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(this); // or gameObject
+    }
+
     /*
     private void Awake()
     {

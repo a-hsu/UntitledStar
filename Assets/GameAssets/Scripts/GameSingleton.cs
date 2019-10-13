@@ -77,6 +77,10 @@ public class GameSingleton : MonoBehaviour
         }
     }
     // Update is called once per frame
+    public void NextScene()
+    {
+        SceneManager.LoadScene(1);
+    }
     void Update()
     {
         gameTimer += Time.deltaTime;
