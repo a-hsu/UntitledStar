@@ -12,14 +12,15 @@ public class SpawnProjectile : MonoBehaviour
     public List<GameObject> vfx = new List<GameObject>();
     private GameObject effectToSpawn;
     PlayerInput input;
+    public AudioManager audio;
     PlayerStatus status;
+    
     float timer = 0;
 
     public float timeToFire = 0;
     // Start is called before the first frame update
     void Start()
     {
-
         effectToSpawn = vfx[0];
         input = GetComponent<PlayerInput>();
         status = new PlayerStatus();
@@ -44,10 +45,7 @@ public class SpawnProjectile : MonoBehaviour
                 StartCoroutine(ShootMissile());
                 timer = 0;
             }
-        }
-
-
-        if (Input.GetButton("Fire1") && Time.time >= timeToFire)
+        }else if (Input.GetButton("Fire1") && Time.time >= timeToFire)
         {
 
             timeToFire = Time.time + 1 / effectToSpawn.GetComponent<ProjectileMove>().fireRate;
@@ -61,6 +59,7 @@ public class SpawnProjectile : MonoBehaviour
             }
         }
     }
+    public AudioClip singleLaser;
     void SpawnVFX(float type)
     {
         GameObject vfx;
@@ -70,13 +69,15 @@ public class SpawnProjectile : MonoBehaviour
             {
                 print("Shotfired");
                 vfx = Instantiate(effectToSpawn, firePointTwo.transform.position, firePointTwo.transform.rotation);
+               // audio.Play(singleLaser);
+                
 
             }
             if (firePointThree != null)
             {
                 print("Shotfired");
                 vfx = Instantiate(effectToSpawn, firePointThree.transform.position, firePointThree.transform.rotation);
-
+                //audio.Play(singleLaser);
 
             }
             else

@@ -34,6 +34,10 @@ public class GameSingleton : MonoBehaviour
     public GameObject rightChainHitBox;
     //public GameObject axeHitBox;
 
+    public void reloadScene()
+    {
+        SceneManager.LoadScene(1);
+    }
     public void Init()
     {
 
@@ -55,8 +59,8 @@ public class GameSingleton : MonoBehaviour
     void Start()
     {
         gameTimer = 0;
-        leftChainHitBox.GetComponent<MeshCollider>().enabled = false;
-        rightChainHitBox.GetComponent<MeshCollider>().enabled = false;
+        //leftChainHitBox.GetComponent<MeshCollider>().enabled = false;
+        //rightChainHitBox.GetComponent<MeshCollider>().enabled = false;
         
        // axeHitBox.SetActive(false);
         Scene scene = SceneManager.GetActiveScene();
