@@ -38,7 +38,9 @@ public class DollyController : MonoBehaviour
     {
         float yaw = turnSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
         float pitch = turnSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
-        
+
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(yaw, 0,0), Time.time * 3f);
+
         myT.Rotate(0, yaw, 0f);
     }
     void Thrust()
