@@ -1,47 +1,8 @@
 fileFormatVersion: 2
-guid: afbbf42a35d3ca347aea29a1457035cc
+guid: fbbeb42c2f8cd574eaf4c460013588f3
 ModelImporter:
   serializedVersion: 26
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: MissileBomb
-  - first:
-      1: 100002
-    second: //RootNode
-  - first:
-      1: 100004
-    second: MissileViking
-  - first:
-      4: 400000
-    second: MissileBomb
-  - first:
-      4: 400002
-    second: //RootNode
-  - first:
-      4: 400004
-    second: MissileViking
-  - first:
-      21: 2100000
-    second: No Name
-  - first:
-      23: 2300000
-    second: MissileBomb
-  - first:
-      23: 2300002
-    second: MissileViking
-  - first:
-      33: 3300000
-    second: MissileBomb
-  - first:
-      33: 3300002
-    second: MissileViking
-  - first:
-      43: 4300000
-    second: MissileBomb
-  - first:
-      43: 4300002
-    second: MissileViking
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -70,12 +31,12 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 3
+    globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
@@ -103,11 +64,11 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 3
@@ -120,7 +81,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.03
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
