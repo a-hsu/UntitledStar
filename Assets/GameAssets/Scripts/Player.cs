@@ -78,6 +78,14 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
+        status.health = 1500f;
+        status.points = 0;
+        status.bombs = 3;
+        status.energy = 100f;
+        status.rings = 0;
+        status.lives = 3;
+        status.laserType = PlayerStatus.Laser.Double;
+
         canMove = true;
         input = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
@@ -101,6 +109,7 @@ public class Player : MonoBehaviour
             //ship.transform.rotation = Quaternion.Lerp(ship.transform.rotation, Quaternion.Euler(60f * input.x, 60f * input.y, ship.transform.rotation.z), Time.deltaTime);
 
             HorizontalLean(transform, input.x, 45, .1f);
+            
         }
     }
     private void Move()
@@ -224,8 +233,9 @@ public class Player : MonoBehaviour
 
 
     }
+    //bool roll;
     /*
-    void Roll()
+    void Roll(int tilt)
     {
         float timer = 0f;
         ship.transform.rotation = Quaternion.Lerp(ship.transform.rotation, Quaternion.Euler(0, 0, -90f * 8), 1f);
@@ -236,8 +246,8 @@ public class Player : MonoBehaviour
             roll = false;
             rollDirection = 0;
         } 
-    }
-    */
+    }*/
+    
 
     // Restricts the player within the camera bounds
     // Creates a vector3 that gets the position of the ship and converts into Viewport space
@@ -309,6 +319,7 @@ public class Player : MonoBehaviour
         if (status.health <= 0)
         {
             Debug.Log("Player is dead");
+            gameManager.state = GameSingleton.GameState.Death;
             Die();
             status.lives--;
             if (status.lives == 0)

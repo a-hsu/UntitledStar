@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         CheckStatus();
+        if(gameObject.name == "MechParent")
+        {
+          //  gameObject.GetComponent<BoxCollider>().center = 
+        }
     }
 
     public void TakeDamage(float dmg)

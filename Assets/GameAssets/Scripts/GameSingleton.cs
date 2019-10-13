@@ -11,15 +11,19 @@ public class GameSingleton : MonoBehaviour
      
     public enum Mode { Corridor, AllRange }  // 0 - Corridor Mode, 1 - All Range Mode
     public enum View { ThirdPerson, Cockpit }
+    public enum GameState { CutScene, InGame, Death, Victory}
+    public GameState state;
     public Mode mode;
     public View view;
+
     public int level;
     public Vector3[] startPosition;
     public static AudioSource bgm;
     public static GameSingleton instance;
     public bool isPersistant;
     public bool isPaused = false;
-    public GameObject player;
+    public Player player;
+    public PlayerStatus playerStatus;
 
     public void Init()
     {
@@ -54,6 +58,21 @@ public class GameSingleton : MonoBehaviour
                 Time.timeScale = 0;
             else
                 Time.timeScale = 1;
+        }
+
+        switch (state)
+        {
+            case GameState.CutScene:
+                break;
+            case GameState.InGame:
+                break;
+            case GameState.Death:
+                break;
+            case GameState.Victory:
+                break;
+            default:
+                break;  
+
         }
     }
     void ExitGame()

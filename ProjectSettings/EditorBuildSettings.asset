@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/GameAssets/Scenes/Intro.unity
+    guid: 9849b249f191fc14a86c185d0dfc638c
+  - enabled: 1
+    path: Assets/GameAssets/Scenes/Enviornment_BossBattle.unity
+    guid: 577d5a7b68c5be24d8cd56929ca6220e
   m_configObjects: {}
