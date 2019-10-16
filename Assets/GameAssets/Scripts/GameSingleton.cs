@@ -29,9 +29,9 @@ public class GameSingleton : MonoBehaviour
     PlayerStatus playerStatus;
 
     public float gameTimer;
-    public Enemy boss;
-    public GameObject leftChainHitBox;
-    public GameObject rightChainHitBox;
+    //public Enemy boss;
+    //public GameObject leftChainHitBox;
+    //public GameObject rightChainHitBox;
     //public GameObject axeHitBox;
 
     public void reloadScene()
@@ -81,6 +81,7 @@ public class GameSingleton : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public AudioManager audio;
     void Update()
     {
         gameTimer += Time.deltaTime;
@@ -92,18 +93,30 @@ public class GameSingleton : MonoBehaviour
             else
                 Time.timeScale = 1;
         }
-
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Intro" || scene.name == "Outro")
+        {
+            state = GameState.CutScene;
+        } //else if(playerStatus.health <= 0)
+          //{
+          //     state = GameState.Death;
+          // } 
+        else
+        {
+            state = GameState.InGame;
+        }
         switch (state)
         {
             case GameState.CutScene:
+                
                 break;
             case GameState.InGame:
-                if(gameTimer > 20f || boss.health < (boss.maxHealth * .8f) || Input.GetKeyDown(KeyCode.U))
-                {
-                    Debug.Log(Input.GetKeyDown(KeyCode.U));
+                //if(gameTimer > 20f || boss.health < (boss.maxHealth * .8f) || Input.GetKeyDown(KeyCode.U))
+               // {
+                //    Debug.Log(Input.GetKeyDown(KeyCode.U));
                     //leftChainHitBox.GetComponent<Enemy>().Init(2500, Enemy.Type.Enemy);
                     //rightChainHitBox.GetComponent<Enemy>().Init(2500, Enemy.Type.Enemy);
-                }
+              //  }
                 break;
             case GameState.Death:
 

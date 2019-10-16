@@ -68,6 +68,7 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         MusicSource.loop = true;
+        MusicSource.volume = .2f;
     }
 
     // Update is called once per frame

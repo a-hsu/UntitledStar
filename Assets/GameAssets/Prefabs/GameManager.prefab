@@ -43,15 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948902fc758ab644e90ca28e598ff9e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
+  state: 0
   mode: 1
   view: 0
   level: 0
   startPosition: []
   isPersistant: 0
   isPaused: 0
-  player: {fileID: 0}
+  player: {fileID: 4793152783844854929, guid: a1a2bc549fd84984bada48c54acf733a, type: 3}
   gameTimer: 0
-  boss: {fileID: 0}
+  boss: {fileID: 1883379592, guid: 2e7bc8ae3fded5740b93845db5e044d2, type: 3}
   leftChainHitBox: {fileID: 0}
   rightChainHitBox: {fileID: 0}

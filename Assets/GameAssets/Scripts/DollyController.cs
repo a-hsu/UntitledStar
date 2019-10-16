@@ -19,7 +19,10 @@ public class DollyController : MonoBehaviour
     {
         
     }
-
+    private void Update()
+    {
+        
+    }
     // Update is called once per frame
     private void FixedUpdate()
     {

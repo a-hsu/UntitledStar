@@ -282,14 +282,16 @@ public class Player : MonoBehaviour
 
         Debug.Log(Quaternion.LookRotation(front));
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(30f * input.y, 30f * input.x, transform.rotation.eulerAngles.z), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
+        /*
         if (input.x <= .05f && input.x >= -.05f && input.y <= .05f && input.y >= -.05f)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(front), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
         }
         else
-            transform.rotation = Quaternion.RotateTowards(transform.rotation,  Quaternion.LookRotation(front /*new Vector3(targetFar.transform.localPosition.x, targetFar.transform.localPosition.y, 1) + front*/), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation,  Quaternion.LookRotation(front ), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
+        */
+        transform.rotation= Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetFar.transform.localPosition), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
 
-        //            Quaternion.(transform.rotation, Quaternion.LookRotation(targetFar.transform.localPosition), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
     }
     public void TakeDamage(float dmg)
     {

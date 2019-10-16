@@ -24,12 +24,12 @@ public class BagyoController : MonoBehaviour
     {
         cam = GetComponent<CinemachineVirtualCamera>();
     }
-
+    float volTimer = 0f;
     // Update is called once per frame
     void Update()
     {
         playTime -= Time.deltaTime;
-
+        
         if(playTime >= 45f)
         {
             cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile = myNoiseProfile;
@@ -46,12 +46,14 @@ public class BagyoController : MonoBehaviour
         {
             cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_NoiseProfile = myNoiseProfileTwo;
             Approach();
-            audio.EffectsSource.volume = Mathf.SmoothStep(0,.2f, Time.deltaTime);
+            volTimer += Time.deltaTime;
+            if(volTimer <= .05f)    
+                audio.EffectsSource.volume = volTimer;
 
 
-            audio.PlayOnce(engine);
+           // audio.PlayOnce(engine);
         }
-        if(playTime <= 30)
+        if(playTime <= 25)
         {
             gamemanager.NextScene();
             gamemanager.state = GameSingleton.GameState.InGame;

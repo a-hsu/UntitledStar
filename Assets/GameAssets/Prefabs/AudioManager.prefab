@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50c7abdb4f08e24bb60a1ca9e5e5ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1047265410407117497, guid: 8fa3d6cd289b13246bc66612339f6702,
+    type: 3}
   EffectsSource: {fileID: 1153664218020619659}
   MusicSource: {fileID: 1153664218020619658}
   bgm:
