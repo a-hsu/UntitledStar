@@ -188,8 +188,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66324340}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -10.5, z: -42.760002}
+  m_LocalRotation: {x: -0.07140897, y: 0.10462904, z: 0.0087557165, w: 0.9919057}
+  m_LocalPosition: {x: -13.311968, y: -14.960374, z: -48.277603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 570493119}
@@ -290,12 +290,12 @@ PrefabInstance:
     - target: {fileID: 7175401467351366864, guid: 02eb06565c8dfa34bac8450f21749d73,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 131.7171
+      value: 96.96
       objectReference: {fileID: 0}
     - target: {fileID: 7175401467351366864, guid: 02eb06565c8dfa34bac8450f21749d73,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -212.6356
+      value: -345.7
       objectReference: {fileID: 0}
     - target: {fileID: 7175401467351366864, guid: 02eb06565c8dfa34bac8450f21749d73,
         type: 3}
@@ -509,7 +509,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  explosion: {fileID: 0}
+  speed: 0
+  angularSpeed: 0
+  knockbackPower: 10
+  canMove: 1
+  isKnockedBack: 0
 --- !u!65 &278911083
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -883,6 +887,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: DollyV3
       objectReference: {fileID: 0}
+    - target: {fileID: 4839224336818775294, guid: 709e75a6d906dd54dae4cc897cdf44a6,
+        type: 3}
+      propertyPath: ship
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4839224336818775294, guid: 709e75a6d906dd54dae4cc897cdf44a6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2006786126333039019, guid: 709e75a6d906dd54dae4cc897cdf44a6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1051,16 +1065,6 @@ PrefabInstance:
     - target: {fileID: 1427349657, guid: 709e75a6d906dd54dae4cc897cdf44a6, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4839224336818775294, guid: 709e75a6d906dd54dae4cc897cdf44a6,
-        type: 3}
-      propertyPath: ship
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4839224336818775294, guid: 709e75a6d906dd54dae4cc897cdf44a6,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2472240914213339890, guid: 709e75a6d906dd54dae4cc897cdf44a6,
         type: 3}
@@ -1272,8 +1276,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303002226}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.18, z: -652.76}
+  m_LocalRotation: {x: 0.040495954, y: 0.012015754, z: -0.000706444, w: -0.99910724}
+  m_LocalPosition: {x: -10.680989, y: -9.719063, z: -650.06866}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1505948329}
@@ -1422,9 +1426,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948902fc758ab644e90ca28e598ff9e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
   mode: 0
   view: 0
+  state: 1
   level: 0
   startPosition: []
   isPersistant: 0
@@ -1465,7 +1469,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  explosion: {fileID: 0}
+  speed: 0
+  angularSpeed: 0
+  knockbackPower: 10
+  canMove: 1
+  isKnockedBack: 0
 --- !u!4 &1937242834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7175401467351366864, guid: 02eb06565c8dfa34bac8450f21749d73,
@@ -1485,6 +1493,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.13, y: 1.34, z: 3.15}
   m_Center: {x: 0, y: 0.3, z: -0.39}
+--- !u!54 &1937242836
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937242831}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1964789718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1614,7 +1638,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  explosion: {fileID: 0}
+  speed: 0
+  angularSpeed: 0
+  knockbackPower: 10
+  canMove: 1
+  isKnockedBack: 0
 --- !u!65 &1964789722
 BoxCollider:
   m_ObjectHideFlags: 0

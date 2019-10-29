@@ -280,7 +280,7 @@ public class Player : MonoBehaviour
 
         Vector3 front = new Vector3(dolly.transform.forward.x, targetFar.transform.localPosition.y, dolly.transform.forward.z);
 
-        Debug.Log(Quaternion.LookRotation(front));
+        //Debug.Log(Quaternion.LookRotation(front));
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(30f * input.y, 30f * input.x, transform.rotation.eulerAngles.z), Mathf.Deg2Rad * lookSpeed * Time.deltaTime);
         /*
         if (input.x <= .05f && input.x >= -.05f && input.y <= .05f && input.y >= -.05f)

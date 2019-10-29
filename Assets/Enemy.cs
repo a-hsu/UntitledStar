@@ -2,27 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class Enemy : MonoBehaviour
+public class Enemy : NPC
 {
-    public float health;
-    public float maxHealth;
-    public enum Type { Enemy, Boss, Chain}
-    public Type type;
-    public Image image;
 
+    // [Header("Flags")]
+    public enum Movement { Stationary, Moving }
+    public Movement movement;
+    public enum MovementType { Procedural, NonProcedural }
+    public MovementType moveType;
+    public enum MovementAggression { None, Average, Hyper }
+    public MovementAggression mveAgg;
+
+    public enum AttackPattern { None, Procedural, NonProcedural }
+    public AttackPattern attackPattern;
+
+    List<Attack> attacks = new List<Attack>();
+
+    public enum EnemyType { Enemy, Boss, Chain }
+    public EnemyType enemyType;
+
+    // public Image image;
+
+    public class Attack {
+        public float damage;
+        public bool isMoving;
+    }
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    public void Init(float maxHealth, Type enemyType)
+    public void Init(float maxHealth, EnemyType newEnemyType)
     {
         gameObject.SetActive(true);
 
         gameObject.GetComponent<MeshCollider>().enabled = true;
         health = maxHealth;
-        type = enemyType;
+        enemyType = newEnemyType;
     }
     // Update is called once per frame
     void Update()
@@ -32,6 +49,7 @@ public class Enemy : MonoBehaviour
         {
           //  gameObject.GetComponent<BoxCollider>().center = 
         }
+        /*
         if (type == Type.Boss)
         {
             if (health > 0)
@@ -40,11 +58,11 @@ public class Enemy : MonoBehaviour
             {
                 image.transform.localScale = new Vector3(0, 1, 1);
             }
-        }
-        if(type == Type.Chain)
-        {
-            StartCoroutine(BreakChains());
-        }
+        }*/
+    //    if(type == Type.Chain)
+     //   {
+     //       StartCoroutine(BreakChains());
+     //   }
     }
 
     public void TakeDamage(float dmg)
@@ -70,11 +88,12 @@ public class Enemy : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             Instantiate(explosion, transform.position, transform.rotation);
-            if(type != Type.Boss)
-                StartCoroutine(BreakChains());
+            //if(type != Type.Boss)
+            //    StartCoroutine(BreakChains());
             Destroy(gameObject);
         }
     }
+    /*
     private IEnumerator BreakChains()
     {
         while (true)
@@ -90,7 +109,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
 
         }
-    }
+    }*/
     void Die()
     {
         // Get shit on

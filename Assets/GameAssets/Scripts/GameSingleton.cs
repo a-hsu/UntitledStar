@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 using UnityEngine.SceneManagement;
 
 public class GameSingleton : MonoBehaviour
 {
-
-    /*
-     * This script controls the state of the game as well as audio
-     */
-     
     public enum Mode { Corridor, AllRange }  // 0 - Corridor Mode, 1 - All Range Mode
-    public enum View { ThirdPerson, Cockpit }
-    public enum GameState { CutScene, InGame, Death, Victory}
-    public GameState state;
     public Mode mode;
+    public enum View { ThirdPerson, Cockpit }
     public View view;
+    public enum GameState { GameStart, CutScene, InGame, Death, Victory, GameOver, LevelStart}
+    public GameState state;
 
     public int level;
     public Vector3[] startPosition;
