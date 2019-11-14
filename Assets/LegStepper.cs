@@ -46,8 +46,6 @@ public class LegStepper : MonoBehaviour
         
         isMoving = true;
 
-        //GetComponent<DampedTransform>().data.dampPosition = 0f;
-
         float timeElapsed = 0;
 
         Vector3 centerPoint;
@@ -62,7 +60,7 @@ public class LegStepper : MonoBehaviour
             normalizedTime = EaseInOut_Cubic(normalizedTime);
             
             DampBone.GetComponent<DampedTransform>().data.dampPosition = Mathf.Clamp(Mathf.Lerp(DampBone.GetComponent<DampedTransform>().data.dampPosition, 0, normalizedTime), 0, 1f);
-            //GetComponent<TwoBoneIKConstraint>().data.targetPositionWeight = Mathf.Clamp(Mathf.Lerp(GetComponent<TwoBoneIKConstraint>().data.targetPositionWeight, 0, normalizedTime), 0, 1f);
+            
             transform.position = Vector3.Lerp(Vector3.Lerp(transform.position, centerPoint, normalizedTime),
                                                 Vector3.Lerp(centerPoint, endPoint, normalizedTime),
                                                 normalizedTime);
@@ -71,7 +69,7 @@ public class LegStepper : MonoBehaviour
         }
 
         DampBone.GetComponent<DampedTransform>().data.dampPosition = 1f;
-        //GetComponent<TwoBoneIKConstraint>().data.targetPositionWeight = 1f;
+        
 
         isMoving = false;
     }

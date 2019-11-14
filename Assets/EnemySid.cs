@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySid : MonoBehaviour
 {
+    [SerializeField] public     Transform   target;
     [SerializeField] public     float       speed;           // ---HOOK--- for altering movement speed during attacks/etc
                      private    bool        isMoving = true; // ---HOOK--- for turning on/off movement during attacks/etc
 
@@ -19,7 +20,16 @@ public class EnemySid : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(-transform.forward * speed * Time.deltaTime);
+        //Translate
+        Vector3 translateDir = new Vector3(target.position.x - transform.position.x, transform.position.y, target.position.z - transform.position.z);
+        transform.Translate(translateDir * speed * Time.deltaTime, Space.World);
+
+        //Rotate
+        Vector3 targetDir = target.position - transform.position;
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, speed, 0.0f);
+        Debug.DrawRay(transform.position, newDir * 200f, Color.red);
+        transform.rotation = Quaternion.LookRotation(newDir);
+        
     }
 
     //Moves each leg one after another based on leg order in switch statement
