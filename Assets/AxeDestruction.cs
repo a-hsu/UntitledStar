@@ -16,7 +16,7 @@ public class AxeDestruction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bothChainsBroken = true)
+        if (bothChainsBroken == true)
             StartCoroutine(DestroyArena());
     }
 
