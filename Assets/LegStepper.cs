@@ -11,18 +11,19 @@ public class LegStepper : MonoBehaviour
 
     //private Transform constrainedBone;
     public Transform DampBone;
+    public GetValidPositions StepChecker;
 
     private Vector3 stepPosition;
 
     public float stepDistance;
     public float stepHeight;
-    public float moveDuration;
+    public float stepDuration;
 
     public bool isMoving;
 
     private void Awake()
     {
-        Physics.IgnoreLayerCollision(10, 10);
+        Physics.IgnoreLayerCollision(9,9);
 
         originalLocalPos = transform.localPosition;
         originalLocalRot = transform.localRotation;
@@ -34,6 +35,9 @@ public class LegStepper : MonoBehaviour
 
     public void TryTakeStep()
     {
+        //Update target step position before checking if leg should actually move
+        DampBone.transform.position = StepChecker.SetNextStepPosition();
+
         if (Vector3.Distance(transform.position, DampBone.transform.position) > stepDistance && !isMoving)
         {
             StopCoroutine(StepToHome());
@@ -43,7 +47,6 @@ public class LegStepper : MonoBehaviour
 
     public IEnumerator StepToHome()
     {
-        
         isMoving = true;
 
         float timeElapsed = 0;
@@ -51,12 +54,12 @@ public class LegStepper : MonoBehaviour
         Vector3 centerPoint;
         Vector3 endPoint;
 
-        while (timeElapsed < moveDuration)
+        while (timeElapsed < stepDuration)
         {
             endPoint = new Vector3(transform.position.x, 0f, transform.position.z);
             centerPoint = new Vector3(transform.position.x, stepHeight, transform.position.z);
             timeElapsed += Time.deltaTime;
-            float normalizedTime = timeElapsed / moveDuration;
+            float normalizedTime = timeElapsed / stepDuration;
             normalizedTime = EaseInOut_Cubic(normalizedTime);
             
             DampBone.GetComponent<DampedTransform>().data.dampPosition = Mathf.Clamp(Mathf.Lerp(DampBone.GetComponent<DampedTransform>().data.dampPosition, 0, normalizedTime), 0, 1f);
