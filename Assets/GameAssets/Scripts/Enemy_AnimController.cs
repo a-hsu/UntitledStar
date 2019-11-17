@@ -5,11 +5,12 @@ using UnityEngine;
 public class Enemy_AnimController : MonoBehaviour
 {
     [SerializeField] public     Transform   target;
-    [SerializeField] public     float       moveSpeed;           // ---HOOK--- for altering movement speed during attacks/etc
-    [SerializeField] public     float       turnSpeed;           // ---HOOK--- "" turn speed ""
+    [Range(0.0f, 0.2f)] public  float       moveSpeed;           // ---HOOK--- for altering movement speed during attacks/etc
+    [Range(0.0f, 0.3f)] public  float       turnSpeed;           // ---HOOK--- "" turn speed ""
     [SerializeField] public     float       fieldOfViewAngles;   // ---HOOK--- for changing how much rig will rotate before moving toward target
                      public     bool        isMoving = true;     // ---HOOK--- for turning on/off movement during attacks/etc
 
+    [SerializeField] public BodyMovement Root;
     [SerializeField] public     LegStepper  LegBR;
     [SerializeField] public     LegStepper  LegBL;
     [SerializeField] public     LegStepper  LegFR;
@@ -37,6 +38,10 @@ public class Enemy_AnimController : MonoBehaviour
             }
 
             //Rotate
+            if (Mathf.Abs(targetDir.x) > 200 && Mathf.Abs(targetDir.z) > 200)
+            {
+                targetDir = targetDir + new Vector3(0, target.position.y / 30f);
+            }
             Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, turnSpeed, 0.0f);
             Debug.DrawRay(transform.position, newDir * 200f, Color.red);
             Quaternion rot = Quaternion.LookRotation(newDir);
