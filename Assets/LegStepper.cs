@@ -30,15 +30,15 @@ public class LegStepper : MonoBehaviour
 
         //constrainedBone = GetComponent<DampedTransform>().data.constrainedObject;
 
-        stepPosition = transform.position;
+        stepPosition = transform.localPosition;
     }
 
     public void TryTakeStep()
     {
         //Update target step position before checking if leg should actually move
-        Vector3 possiblePosition = StepChecker.SetNextStepPosition();
-        DampBone.transform.position = Vector3.Distance(possiblePosition, DampBone.transform.position) < 200 ? possiblePosition : DampBone.transform.position;
-
+        //Vector3 possiblePosition = StepChecker.SetNextStepPosition();
+        //DampBone.transform.position = Vector3.Distance(possiblePosition, DampBone.transform.position) < 200 ? possiblePosition : DampBone.transform.position;
+        DampBone.transform.position = StepChecker.SetNextStepPosition();
 
         if (Vector3.Distance(transform.position, DampBone.transform.position) > stepDistance && !isMoving)
         {

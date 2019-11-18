@@ -2,20 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StepChecker : MonoBehaviour
+public class BodyChecker : MonoBehaviour
 {
-    private float checkDistance = 60f;
-    public Vector3 originalLocalPosition;
+    public Transform target;
+    public Transform parentMech;
+    private float checkDistance = 150f;
+    public List<Vector3> lastPositions;
+    public bool isOnWall = true;
     List<Vector3> raycastHits = new List<Vector3>();
-    
+
 
     private void Start()
     {
         Physics.IgnoreLayerCollision(9, 9);
+        
     }
+    private void Update()
+    {
 
+        if (lastPositions.Count > 15)
+            lastPositions.RemoveAt(0);
+
+        if (Vector3.Distance(transform.position, parentMech.position) < 100f && Vector3.Distance(transform.position, target.position) > 50f)
+            transform.position = SetNextStepPosition();
+
+    }
     public Vector3 SetNextStepPosition()
     {
+
+
         raycastHits.Clear();
         Vector3 newPosition = Vector3.zero;
 
@@ -37,20 +52,7 @@ public class StepChecker : MonoBehaviour
         Debug.DrawRay(transform.position, Vector3.Normalize(transform.up + transform.forward - transform.right) * (checkDistance + 25f), Color.green, 1f);
         Debug.DrawRay(transform.position, Vector3.Normalize(transform.up - transform.forward + transform.right) * (checkDistance + 25f), Color.green, 1f);
         Debug.DrawRay(transform.position, Vector3.Normalize(transform.up - transform.forward - transform.right) * (checkDistance + 25f), Color.green, 1f);
-        //note: leg bone transforms will always have weird original rotations so this is one of them
-        //if (Physics.Raycast(transform.position, -transform.up + transform.forward, out hit, checkDistance))
-        //{
-        //    return hit.point;
-        //}
-        //else if (Physics.Raycast(transform.position, -transform.up, out hit, checkDistance + 25f))
-        //{
-        //    return hit.point;
-        //}
-        //else
-        //{
-        //    leg.transform.localPosition = originalLocalPosition;
-        //    return leg.transform.position;
-        //}
+
         RaycastHit hit;
 
         //down
@@ -58,7 +60,7 @@ public class StepChecker : MonoBehaviour
             raycastHits.Add(hit.point);
 
         //forward + down
-        if(Physics.Raycast(transform.position, -transform.up + transform.forward, out hit , checkDistance))
+        if (Physics.Raycast(transform.position, -transform.up + transform.forward, out hit, checkDistance))
             raycastHits.Add(hit.point);
 
         //backward + down
@@ -125,18 +127,47 @@ public class StepChecker : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.up - transform.forward - transform.right, out hit, checkDistance + 25f))
             raycastHits.Add(hit.point);
 
+        List<Vector3> tempArray = new List<Vector3>();
+        foreach(Vector3 pos in lastPositions)
+        {
+            foreach(Vector3 hits in raycastHits)
+            {
+                if (Vector3.Cross(pos, hits).magnitude  < 0.1f || Vector3.Distance(pos, hits) < 40f)
+                    tempArray.Add(hits);
+            }
+        }
+
+        foreach(Vector3 bad in tempArray)
+        {
+            raycastHits.Remove(bad);
+        }
 
         int furthestPointIndex = 0;
-        for(int i = 0; i < raycastHits.Count - 1; i++)
+        for (int i = 0; i < raycastHits.Count; i++)
         {
-            if (Vector3.Distance(transform.position + transform.forward, raycastHits[i + 1]) < Vector3.Distance(transform.position, raycastHits[i]))
+            if (Vector3.Distance(target.position, raycastHits[i]) < Vector3.Distance(target.position, transform.position))
             {
-                furthestPointIndex = i + 1;
+                furthestPointIndex = i;
             }
         }
         if (raycastHits.Count > 0)
+        {
+            isOnWall = true;
+            lastPositions.Add(raycastHits[furthestPointIndex]);
+            Debug.Log(raycastHits[furthestPointIndex]);
+            foreach(Vector3 pos in lastPositions)
+            {
+                Debug.Log(pos);
+            }
             return raycastHits[furthestPointIndex];
+        }
         else
-            return transform.position - transform.up * 30f;
+        {
+            isOnWall = false;
+            lastPositions.Add(transform.position + (target.position - transform.position) * Time.deltaTime * 10f);
+            return transform.position + (target.position - transform.position)*Time.deltaTime*10f;
+        }
+
+
     }
 }

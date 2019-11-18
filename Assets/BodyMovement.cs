@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class BodyMovement : MonoBehaviour
 {
+    [SerializeField] public Transform target;
     [SerializeField] public float speed;
     public float checkDistance = 60f;
 
     [SerializeField]
     public List<LegStepper> legs;
+
+
+    private Vector3 upwardLookDirection;
 
     private void Start()
     {
@@ -29,7 +33,10 @@ public class BodyMovement : MonoBehaviour
         Vector3 newPosition = SetValidPosition();
         if (newPosition != transform.position)
         {
-            transform.position = Vector3.Lerp(transform.position, newPosition, speed * Time.deltaTime);
+            //transform.position = Vector3.Lerp(transform.position, newPosition, speed * Time.deltaTime);
+            Quaternion rot = Quaternion.LookRotation(Vector3.Cross(transform.right, upwardLookDirection));
+            rot = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime);
+            transform.rotation = rot;
         }
     }
 
@@ -49,10 +56,22 @@ public class BodyMovement : MonoBehaviour
         //}
         if (Physics.Raycast(transform.position, -transform.up, out hit, checkDistance))
         {
+            upwardLookDirection = hit.normal;
             return hit.point + transform.up * 25f + transform.up * Mathf.Sin(Time.time);
+        }
+        else if (Physics.Raycast(transform.position, transform.right, out hit, checkDistance))
+        {
+            upwardLookDirection = hit.normal;
+            return hit.point - transform.up * 25f + transform.up * Mathf.Sin(Time.time);
+        }
+        else if (Physics.Raycast(transform.position, -transform.right, out hit, checkDistance))
+        {
+            upwardLookDirection = hit.normal;
+            return hit.point - transform.up * 25f + transform.up * Mathf.Sin(Time.time);
         }
         else
         {
+            upwardLookDirection = transform.up;
             return transform.position;
         }
     }
