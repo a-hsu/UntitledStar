@@ -19,24 +19,24 @@ public class StepChecker : MonoBehaviour
         raycastHits.Clear();
         Vector3 newPosition = Vector3.zero;
 
-        Debug.DrawRay(transform.position, -transform.up * checkDistance, Color.red, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up + transform.forward) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up - transform.forward) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up + transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up - transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up + transform.forward + transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up + transform.forward - transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up - transform.forward + transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up - transform.forward - transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, transform.up * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(transform.up + transform.forward) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(transform.up - transform.forward) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(transform.up + transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(transform.up - transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(transform.up + transform.forward + transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(transform.up + transform.forward - transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(transform.up - transform.forward + transform.right) * (checkDistance + 25f), Color.green, 1f);
-        Debug.DrawRay(transform.position, Vector3.Normalize(transform.up - transform.forward - transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, -transform.up * checkDistance, Color.red, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up + transform.forward) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up - transform.forward) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up + transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up - transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up + transform.forward + transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up + transform.forward - transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up - transform.forward + transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up - transform.forward - transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, transform.up * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(transform.up + transform.forward) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(transform.up - transform.forward) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(transform.up + transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(transform.up - transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(transform.up + transform.forward + transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(transform.up + transform.forward - transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(transform.up - transform.forward + transform.right) * (checkDistance + 25f), Color.green, 1f);
+        //Debug.DrawRay(transform.position, Vector3.Normalize(transform.up - transform.forward - transform.right) * (checkDistance + 25f), Color.green, 1f);
         //note: leg bone transforms will always have weird original rotations so this is one of them
         //if (Physics.Raycast(transform.position, -transform.up + transform.forward, out hit, checkDistance))
         //{

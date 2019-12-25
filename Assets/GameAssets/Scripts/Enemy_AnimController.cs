@@ -43,7 +43,7 @@ public class Enemy_AnimController : MonoBehaviour
             //    targetDir = targetDir + new Vector3(0, target.position.y / 30f);
             //}
             Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, turnSpeed, 0.0f);
-            Debug.DrawRay(transform.position, newDir * 200f, Color.red);
+            Debug.DrawRay(transform.position, newDir * 100f, Color.red);
             Quaternion rot = Quaternion.LookRotation(newDir);
             rot = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime);
             transform.rotation = rot;

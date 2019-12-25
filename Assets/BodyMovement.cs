@@ -12,8 +12,6 @@ public class BodyMovement : MonoBehaviour
     public List<LegStepper> legs;
 
 
-    private Vector3 upwardLookDirection;
-
     private void Start()
     {
         Physics.IgnoreLayerCollision(9, 9);
@@ -28,25 +26,38 @@ public class BodyMovement : MonoBehaviour
             {
                 count += 1;
             }
-        }     
+        }
 
-        Vector3 newPosition = SetValidPosition();
-        if (newPosition != transform.position)
+        Vector3 newZNormal = GetPointOfContactNormal();
+        if (Vector3.Angle(transform.up, newZNormal) > 10f)
         {
             //transform.position = Vector3.Lerp(transform.position, newPosition, speed * Time.deltaTime);
-            Quaternion rot = Quaternion.LookRotation(Vector3.Cross(transform.right, upwardLookDirection));
-            rot = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime);
-            transform.rotation = rot;
+            //Quaternion rot = Quaternion.LookRotation(Vector3.Cross(transform.right, newZNormal), transform.up);
+            //rot = Quaternion.Slerp(transform.rotation, rot, 0.1f*  Time.deltaTime);
+            //transform.rotation = rot;
+            transform.Rotate(transform.right, Vector3.Angle(transform.up, newZNormal) * 0.1f * Time.deltaTime);
         }
     }
 
+    private Vector3 GetPointOfContactNormal()
+    {
+        Vector3 QR = legs[1].transform.position - legs[0].transform.position;
+        Vector3 QS = legs[2].transform.position - legs[0].transform.position;
+
+        return Vector3.Cross(QR, QS);
+    }
 
 
     public Vector3 SetValidPosition()
     {
         RaycastHit hit;
 
-        Debug.DrawRay(transform.position, -transform.up * 100f, Color.red, 3f);
+        Debug.DrawRay(transform.position, -transform.up * checkDistance, Color.red, 1f);
+        Debug.DrawRay(transform.position, transform.up * checkDistance, Color.red, 1f);
+        Debug.DrawRay(transform.position, transform.right, Color.red, 1f);
+        Debug.DrawRay(transform.position, -transform.right , Color.red, 1f);
+
+
         Debug.DrawRay(transform.position, Vector3.Normalize(-transform.up + transform.forward*2) * checkDistance, Color.green, 1f);
 
         //note: leg bone transforms will always have weird original rotations so this is one of them
@@ -56,22 +67,18 @@ public class BodyMovement : MonoBehaviour
         //}
         if (Physics.Raycast(transform.position, -transform.up, out hit, checkDistance))
         {
-            upwardLookDirection = hit.normal;
             return hit.point + transform.up * 25f + transform.up * Mathf.Sin(Time.time);
         }
         else if (Physics.Raycast(transform.position, transform.right, out hit, checkDistance))
         {
-            upwardLookDirection = hit.normal;
             return hit.point - transform.up * 25f + transform.up * Mathf.Sin(Time.time);
         }
         else if (Physics.Raycast(transform.position, -transform.right, out hit, checkDistance))
         {
-            upwardLookDirection = hit.normal;
             return hit.point - transform.up * 25f + transform.up * Mathf.Sin(Time.time);
         }
         else
         {
-            upwardLookDirection = transform.up;
             return transform.position;
         }
     }

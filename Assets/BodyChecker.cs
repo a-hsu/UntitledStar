@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Depending on distance to parent entity and the target entity, will update next step position for parent entity
+/// How it works:
+/// 1. Keeps track of 15 last positions, excludes those from consideration
+/// 2. If no raycasts hit a collider, ***FOR NOW***, the body checker returns the location at transform.position + target direction vector
+/// 
+/// Note: #2 above is a terrible solution and should be changed. Maybe ping each location in the last positions for a valid position and 
+///         work backwards from there. Would allow entity to go into dead ends and return from them to go to a new place
+/// </summary>
 public class BodyChecker : MonoBehaviour
 {
     public Transform target;
@@ -17,6 +27,7 @@ public class BodyChecker : MonoBehaviour
         Physics.IgnoreLayerCollision(9, 9);
         
     }
+
     private void Update()
     {
 
@@ -27,9 +38,10 @@ public class BodyChecker : MonoBehaviour
             transform.position = SetNextStepPosition();
 
     }
+
+
     public Vector3 SetNextStepPosition()
     {
-
 
         raycastHits.Clear();
         Vector3 newPosition = Vector3.zero;
@@ -154,17 +166,13 @@ public class BodyChecker : MonoBehaviour
         {
             isOnWall = true;
             lastPositions.Add(raycastHits[furthestPointIndex]);
-            Debug.Log(raycastHits[furthestPointIndex]);
-            foreach(Vector3 pos in lastPositions)
-            {
-                Debug.Log(pos);
-            }
+           
             return raycastHits[furthestPointIndex];
         }
         else
         {
             isOnWall = false;
-            lastPositions.Add(transform.position + (target.position - transform.position) * Time.deltaTime * 10f);
+            lastPositions.Add(transform.position + (target.position - transform.position)); 
             return transform.position + (target.position - transform.position)*Time.deltaTime*10f;
         }
 
