@@ -35,8 +35,16 @@ public class BodyMovement : MonoBehaviour
             //Quaternion rot = Quaternion.LookRotation(Vector3.Cross(transform.right, newZNormal), transform.up);
             //rot = Quaternion.Slerp(transform.rotation, rot, 0.1f*  Time.deltaTime);
             //transform.rotation = rot;
-            transform.Rotate(transform.right, Vector3.Angle(transform.up, newZNormal) * 0.1f * Time.deltaTime);
+            transform.Rotate(transform.forward, Vector3.SignedAngle(transform.up, newZNormal, transform.up) * 0.1f * Time.deltaTime);
         }
+
+        //Get centroid of leg positions. Note: This can result in a centroid outside of the polygon made by the 4 legs but fuck it for now
+        Vector3 legCentroid = new Vector3(legs[0].transform.position.x + legs[1].transform.position.x + legs[2].transform.position.x + legs[3].transform.position.x
+                                          , legs[0].transform.position.y + legs[1].transform.position.y + legs[2].transform.position.y + legs[3].transform.position.y
+                                          , legs[0].transform.position.z + legs[1].transform.position.z + legs[2].transform.position.z + legs[3].transform.position.z) * 0.25f;
+
+        //Bias body centering towards forward legs
+        transform.position = Vector3.Lerp(transform.position, legCentroid + transform.right *10f, speed * Time.deltaTime); 
     }
 
     private Vector3 GetPointOfContactNormal()
